@@ -30,8 +30,6 @@ import com.cts.service.MyUserDetailService;
 import com.cts.model.AuthenticationRequest;
 import com.cts.model.AuthenticationResponse;
 import com.cts.util.*;
-
-
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
@@ -50,14 +48,6 @@ private JwtUtil jwtUtil;
 @Autowired
 private MyUserDetailService service;
 
-//
-//@GetMapping("/hello")
-//public String hello()
-//{
-//	return "Hello World";
-//}
-
-
 @PostMapping("/authenticate")
 public ResponseEntity<?> authenticateUser(@RequestBody AuthenticationRequest req) throws Exception
 {
@@ -73,14 +63,6 @@ public ResponseEntity<?> authenticateUser(@RequestBody AuthenticationRequest req
 	final String jwt=jwtUtil.generateToken(userDetails);
 	return ResponseEntity.ok(new AuthenticationResponse(jwt));
 }
-
-
-
-
-
-
-
-
 
 @PostMapping("/claims/addClaim")
 public ClaimDetails addNewClaim(@RequestBody ClaimResponse claimResponse) {
@@ -121,33 +103,6 @@ public Fees releaseFees(@PathVariable String id) {
 public List<Surveyor> getAllSurveyor() {
 	return insuranceService.getAllSurveyors();
 }
-
-//Not needed for me
-//@PostMapping("/policies/new")
-//public Policy addNewPolicy(@RequestBody PolicyResponse policyResponse) {
-//	System.out.println(policyResponse);
-//	return insuranceService.addNewPolicy(policyResponse);
-//}
-
-//Not needed for me
-//@GetMapping("/policies")
-//public List<Policy> getAllPolicies() {
-//	return insuranceService.getAllPolicies();
-//}
-//For IRDA
-//@GetMapping("/claims/date")
-//public List<ClaimDetails> getAllPendingClaimsByDate(@RequestParam int month,@RequestParam int year){
-//	return insuranceService.getAllPendingClaimsByDate(month,year);
-//}
-//For IRDA
-//@GetMapping("/claims/amount/date")
-//public List<AmountResponse> getAllAmountProvided(@RequestParam int month,@RequestParam int year){
-//	return insuranceService.getAllAmountProvided(month,year);
-//}
-//@PostMapping("/policies/{id}")
-//public String raiseClaimRequest(@PathVariable String id) {
-//	return insuranceService.raiseClaimRequest(id);
-//}
 
 @GetMapping("/claims/unsurvyed")
 public List<ClaimDetails>  getClaimsWithoutSurveyor() {
